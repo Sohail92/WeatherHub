@@ -19,7 +19,6 @@ namespace WeatherHub.Controllers
             weatherInformation.Add(new OpenWeather().GetWeatherInformation("Middlesbrough"));
             weatherInformation.Add(new AccuWeather().GetWeatherInformation("Middlesbrough"));
 
-
             return View("Index", weatherInformation);
         }
     }
