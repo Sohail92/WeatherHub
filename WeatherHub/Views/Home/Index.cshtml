@@ -1,8 +1,12 @@
-﻿@{
+﻿@model String
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <p>Here you can find temperature data for your chosen location from a number of providers</p>
+
+    <p>@Model</p>
 </div>
