@@ -25,11 +25,11 @@
 
     public class Main
     {
-        public float temp { get; set; }
-        public int pressure { get; set; }
-        public int humidity { get; set; }
-        public float temp_min { get; set; }
-        public int temp_max { get; set; }
+        public decimal temp { get; set; }
+        public decimal pressure { get; set; }
+        public decimal humidity { get; set; }
+        public decimal temp_min { get; set; }
+        public decimal temp_max { get; set; }
     }
 
     public class Wind
