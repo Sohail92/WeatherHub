@@ -1,11 +1,12 @@
 ﻿using HtmlAgilityPack;
+using WeatherHub.Interfaces;
 using WeatherHub.Models;
 
 namespace WeatherHub.Logic
 {
-    public class Google
+    public class Google : IProvideWeatherInformation
     {
-        public SupplierInformation GetGoogleWeather(string location)
+        public SupplierInformation GetWeatherInformation(string location)
         {
             var html = @"https://www.google.com/search?q=weather+middlesbrough";
             HtmlDocument htmlDoc = new HtmlWeb().Load(html);
