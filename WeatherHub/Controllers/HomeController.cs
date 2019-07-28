@@ -17,7 +17,9 @@ namespace WeatherHub.Controllers
             List<SupplierInformation> weatherInformation = new List<SupplierInformation>();
             weatherInformation.Add(new Google().GetWeatherInformation("Middlesbrough"));
             weatherInformation.Add(new OpenWeather().GetWeatherInformation("Middlesbrough"));
-                     
+            weatherInformation.Add(new AccuWeather().GetWeatherInformation("Middlesbrough"));
+
+
             return View("Index", weatherInformation);
         }
     }

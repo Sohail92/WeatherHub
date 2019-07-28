@@ -4,7 +4,7 @@ using System.Net.Http;
 namespace WeatherHubIntegrationTests
 {
     [TestClass]
-    public class UnitTest1
+    public class AccuWeatherIntegration
     {
         private string GetLocationKey()
         {
@@ -39,11 +39,9 @@ namespace WeatherHubIntegrationTests
             using (HttpContent content = res.Content)
                 weatherData = content.ReadAsStringAsync().Result;
 
-
             // Assert
             Assert.IsNotNull(weatherData);
         }
-
 
     }
 }
