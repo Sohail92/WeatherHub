@@ -15,7 +15,7 @@ namespace WeatherHub.Logic
             return new SupplierInformation()
             {
                 Name = "Google UK",
-                WeatherInformation = "the temperature in your selected location is: " + innerText.Substring(innerText.IndexOf("Middlesbrough"), 31)
+                WeatherInformation = "the temperature in your selected location is: " + innerText.Substring(innerText.IndexOf("Weather") + 7, 2) // should make this a REGEX
             };
         }
     }
