@@ -1,4 +1,4 @@
-﻿@model String
+﻿@model List<string>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -8,5 +8,8 @@
     <h1 class="display-4">Welcome</h1>
     <p>Here you can find temperature data for your chosen location from a number of providers</p>
 
-    <p>@Model</p>
+    @foreach(var supplierText in @Model)
+    {
+        <p>@supplierText</p>
+    }
 </div>
