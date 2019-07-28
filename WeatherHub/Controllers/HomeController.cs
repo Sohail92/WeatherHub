@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WeatherHub.Logic;
+using WeatherHub.Models;
 
 namespace WeatherHub.Controllers
 {
@@ -13,7 +14,7 @@ namespace WeatherHub.Controllers
             // Hard coded middlesbrough for now, base weather info on users search param in a future version.
 
             // Initialise list of weather information and append from each available source.
-            List<string> weatherInformation = new List<string>();
+            List<SupplierInformation> weatherInformation = new List<SupplierInformation>();
             weatherInformation.Add(new Google().GetGoogleWeather("Middlesbrough"));
             weatherInformation.Add(new OpenWeather().GetOpenWeatherInformation("Middlesbrough"));
                      

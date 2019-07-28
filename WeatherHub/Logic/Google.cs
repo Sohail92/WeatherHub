@@ -1,17 +1,23 @@
 ﻿using HtmlAgilityPack;
+using WeatherHub.Models;
 
 namespace WeatherHub.Logic
 {
     public class Google
     {
-        public string GetGoogleWeather(string location)
+        public SupplierInformation GetGoogleWeather(string location)
         {
             var html = @"https://www.google.com/search?q=weather+middlesbrough";
-            HtmlWeb web = new HtmlWeb();
-            var htmlDoc = web.Load(html);
-            var node = htmlDoc.DocumentNode.SelectSingleNode("//body");
-            string text = node.InnerText;
-            return "According to Google the weather in your selected location is: " + text.Substring(text.IndexOf("Middlesbrough"), 31);
+            HtmlDocument htmlDoc = new HtmlWeb().Load(html);
+            HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode("//body");
+            string innerText = node.InnerText;
+
+            return new SupplierInformation()
+            {
+                Name = "Google UK",
+                WeatherInformation = "the temperature in your selected location is: " + innerText.Substring(innerText.IndexOf("Middlesbrough"), 31)
+            };
         }
     }
 }
+

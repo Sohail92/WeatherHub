@@ -1,15 +1,16 @@
-﻿@model List<string>
+﻿@model List<SupplierInformation>
 
 @{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+<div class="text-left">
     <h1 class="display-4">Welcome</h1>
-    <p>Here you can find temperature data for your chosen location from a number of providers</p>
-
-    @foreach(var supplierText in @Model)
+    <h4>Here you can find temperature data for your chosen location from a number of providers</h4>
+    <br />
+    @foreach(SupplierInformation supplierInfo in @Model)
     {
-        <p>@supplierText</p>
+        <div class="text-uppercase">@supplierInfo.Name</div>
+        <p class="text-capitalize">@supplierInfo.WeatherInformation</p>
     }
 </div>
