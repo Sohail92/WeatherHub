@@ -8,7 +8,7 @@ namespace WeatherHub.Logic
     {
         public SupplierInformation GetWeatherInformation(string location)
         {
-            var html = $"https://www.google.com/search?q=weather+{location}";
+            var html = $"https://www.google.co.uk/search?q=weather+{location}";
             HtmlDocument htmlDoc = new HtmlWeb().Load(html);
             HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode("//body");
             string innerText = node.InnerText;
