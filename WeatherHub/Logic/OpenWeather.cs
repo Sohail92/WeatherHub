@@ -19,7 +19,7 @@ namespace WeatherHub.Logic
                         temperature = content.ReadAsStringAsync().Result;
 
             OpenWeatherResponse owr = JsonConvert.DeserializeObject<OpenWeatherResponse>(temperature);
-            return new SupplierInformation { Name = "OpenWeather", WeatherInformation = $"The temperature in your selected location is: {owr.main.temp.ToString()}" };
+            return new SupplierInformation { Name = "OpenWeather", WeatherInformation = $"The temperature in your selected location is: {owr.main.temp.ToString()}°C" };
         }
     }
 }

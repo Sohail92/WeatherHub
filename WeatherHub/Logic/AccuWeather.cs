@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using WeatherHub.Interfaces;
@@ -11,18 +12,30 @@ namespace WeatherHub.Logic
     {
         public SupplierInformation GetWeatherInformation(string location)
         {
-            // Get the location information from AccuWeather (we need the location key to get the weather data).
-            string locationInformation = GetLocationKey("Middlesbrough");
-            // Deserialise the location information in to a usable response for us to utilise the key.
-            List<AccuWeatherLocationResponse> locationResponse = JsonConvert.DeserializeObject<List<AccuWeatherLocationResponse>>(locationInformation);
+            SupplierInformation supplierInfo = new SupplierInformation { Name = "AccuWeather" };
 
-            // Get the weather data from AccuWeather based upon the location key
-            string weatherData = GetAccuWeatherData(locationResponse[0].Key);
+            try
+            {
+                // Get the location information from AccuWeather (we need the location key to get the weather data).
+                string locationInformation = GetLocationKey("Middlesbrough");
+                // Deserialise the location information in to a usable response for us to utilise the key.
+                List<AccuWeatherLocationResponse> locationResponse = JsonConvert.DeserializeObject<List<AccuWeatherLocationResponse>>(locationInformation);
 
-            // Convert the weather data response to a usable object
-            List<AccuWeatherResponse> returnedAccuWeatherData = JsonConvert.DeserializeObject<List<AccuWeatherResponse>>(weatherData);
+                // Get the weather data from AccuWeather based upon the location key
+                string weatherData = GetAccuWeatherData(locationResponse[0].Key);
 
-            return new SupplierInformation { Name = "AccuWeather", WeatherInformation = "The temperature in your selected location is:" + returnedAccuWeatherData[0].Temperature.Metric.Value };
+                // Convert the weather data response to a usable object
+                List<AccuWeatherResponse> returnedAccuWeatherData = JsonConvert.DeserializeObject<List<AccuWeatherResponse>>(weatherData);
+
+                supplierInfo.WeatherInformation = $"The temperature in your selected location is:{returnedAccuWeatherData[0].Temperature.Metric.Value}°C";
+            }
+            catch(Exception ex)
+            {
+                supplierInfo.WeatherInformation = "There was an error retrieving weather information from AccuWeather. Please try again later. ErrorDetail: Maximum number of API requests received.";
+
+                // Log exception {to-do}
+            }
+            return supplierInfo;
         }
 
         private string GetLocationKey(string location)
