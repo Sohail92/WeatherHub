@@ -25,3 +25,5 @@ Technologies which I aim to use as this project progresses:
 - Webpack
 - Babel
 - ESLint
+
+![AppImage](https://github.com/Sohail92/WeatherHub/blob/master/app.png)
