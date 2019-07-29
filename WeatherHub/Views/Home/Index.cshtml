@@ -8,9 +8,16 @@
     <h1 class="display-4">Welcome</h1>
     <h4>Here you can find temperature data for your chosen location from a number of providers</h4>
     <br />
-    @foreach(SupplierInformation supplierInfo in @Model)
+    @*<nav class="navbar navbar-light bg-light">*@
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Enter a location" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    @*</nav>*@
+    <br />
+    @foreach (SupplierInformation supplierInfo in @Model)
     {
-        <div class="text-uppercase">@supplierInfo.Name</div>
-        <p class="text-capitalize">@supplierInfo.WeatherInformation°C</p>
+        <div class="font-weight-bold">@supplierInfo.Name</div>
+        <p class="text-">@supplierInfo.WeatherInformation°C</p>
     }
 </div>

@@ -8,7 +8,7 @@ namespace WeatherHub.Logic
     {
         public SupplierInformation GetWeatherInformation(string location)
         {
-            var html = @"https://www.google.com/search?q=weather+middlesbrough";
+            var html = $"https://www.google.com/search?q=weather+{location}";
             HtmlDocument htmlDoc = new HtmlWeb().Load(html);
             HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode("//body");
             string innerText = node.InnerText;
@@ -16,7 +16,7 @@ namespace WeatherHub.Logic
             return new SupplierInformation()
             {
                 Name = "Google UK",
-                WeatherInformation = "the temperature in your selected location is: " + innerText.Substring(innerText.IndexOf("Weather") + 7, 2) // should make this a REGEX
+                WeatherInformation = "The temperature in your selected location is: " + innerText.Substring(innerText.IndexOf("Weather") + 7, 2) // should make this a REGEX
             };
         }
     }

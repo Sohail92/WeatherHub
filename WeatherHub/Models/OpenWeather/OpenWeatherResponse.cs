@@ -34,30 +34,30 @@
 
     public class Wind
     {
-        public float speed { get; set; }
-        public int deg { get; set; }
+        //public float speed { get; set; }
+        //public int deg { get; set; }
     }
 
     public class Clouds
     {
-        public int all { get; set; }
+        //public int all { get; set; }
     }
 
     public class Sys
     {
-        public int type { get; set; }
-        public int id { get; set; }
-        public float message { get; set; }
-        public string country { get; set; }
-        public int sunrise { get; set; }
-        public int sunset { get; set; }
+        //public int type { get; set; }
+        //public int id { get; set; }
+        //public float message { get; set; }
+        //public string country { get; set; }
+        //public int sunrise { get; set; }
+        //public int sunset { get; set; }
     }
 
     public class Weather
     {
-        public int id { get; set; }
-        public string main { get; set; }
-        public string description { get; set; }
-        public string icon { get; set; }
+        //public int id { get; set; }
+        //public string main { get; set; }
+        //public string description { get; set; }
+        //public string icon { get; set; }
     }
 }
