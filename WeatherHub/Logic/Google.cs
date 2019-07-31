@@ -12,7 +12,7 @@ namespace WeatherHub.Logic
             SupplierInformation supplierInfo = new SupplierInformation { Name = "Google UK" };
             try
             {
-                var html = $"https://www.google.co.uk/search?q=weather+{location}";
+                var html = $"https://www.google.co.uk/search?q=weather+{location}%20UK";
                 HtmlDocument htmlDoc = new HtmlWeb().Load(html);
                 HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode("//body");
                 string innerText = node.InnerText;

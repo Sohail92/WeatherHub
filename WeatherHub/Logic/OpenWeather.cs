@@ -14,7 +14,7 @@ namespace WeatherHub.Logic
             string temperature = "";
 
             using (HttpClient client = new HttpClient())
-                using (HttpResponseMessage res = client.GetAsync($"http://api.openweathermap.org/data/2.5/weather?q={location},UK&APPID=dcc298d8c1e5942a9a914b09fe3f290c&units=metric").Result)
+                using (HttpResponseMessage res = client.GetAsync($"http://api.openweathermap.org/data/2.5/weather?q={location}&APPID=dcc298d8c1e5942a9a914b09fe3f290c&units=metric").Result)
                     using (HttpContent content = res.Content)
                         temperature = content.ReadAsStringAsync().Result;
 
