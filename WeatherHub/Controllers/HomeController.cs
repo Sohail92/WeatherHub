@@ -7,22 +7,33 @@ namespace WeatherHub.Controllers
 {
     public class HomeController : Controller
     {
+        /// <summary>
+        /// Controller action hit on load of the web app, and the default route.
+        /// </summary>
+        /// <returns>Home/Index view</returns>
         public IActionResult Index()
         {
             return View("Index");
         }
 
+        /// <summary>
+        /// Controller action hit when the user searches from the search partial for a location.
+        /// </summary>
+        /// <param name="location">The location to search providers for</param>
+        /// <returns>The results view populated with supplier information</returns>
         public IActionResult Search(string location)
         {
-            // Notes: could cache the calls based on the location e.g. Keep Middlesbrough cached for 15mins.
+  
 
             // Initialise list of weather information and append from each available source.
-            List<SupplierInformation> weatherInformation = new List<SupplierInformation>();
-            weatherInformation.Add(new Google().GetWeatherInformation(location));
-            weatherInformation.Add(new OpenWeather().GetWeatherInformation(location));
-            weatherInformation.Add(new AccuWeather().GetWeatherInformation(location));
+            List<SupplierInformation> weatherInformation = new List<SupplierInformation>
+            {
+                new Google().GetWeatherInformation(location),
+                new OpenWeather().GetWeatherInformation(location),
+                new AccuWeather().GetWeatherInformation(location)
+            };
 
-            return View("~/Views/SearchResults/SearchResults.cshtml", weatherInformation);
+            return View("~/Views/Search/Results.cshtml", weatherInformation);
         }
     }
 }
