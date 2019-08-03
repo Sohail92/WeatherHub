@@ -5,13 +5,13 @@
 }
 
 <div class="text-left">
-    <h4>Here you can find temperature data for your chosen location from a number of providers</h4>
+    <h1>Search Results</h1>
+    <h2>Here you can find temperature data for your chosen location from a number of providers</h2>
     <br />
     @Html.Partial("_SearchWidget")
     <br />
 </div>
 
-<br />
 <div class="container">
     <div class="row">
         @foreach (var supplier in Model.GetRange(0, 2))
