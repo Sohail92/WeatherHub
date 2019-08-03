@@ -5,13 +5,34 @@
 }
 
 <div class="text-left">
-    <h2>Here you can find temperature data for your chosen location from a number of providers</h2>
+    <h4>Here you can find temperature data for your chosen location from a number of providers</h4>
     <br />
     @Html.Partial("_SearchWidget")
     <br />
-    @foreach (SupplierInformation supplierInfo in @Model)
-    {
-        <div class="font-weight-bold">@supplierInfo.Name</div>
-        <p class="text-">@supplierInfo.WeatherInformation</p>
-    }
+</div>
+
+<br />
+<div class="container">
+    <div class="row">
+        @foreach (var supplier in Model.GetRange(0, 2))
+        {
+            <div class="col-sm border box-styling">
+                <p class="font-weight-bold">@supplier.Name</p>
+                <p>@supplier.WeatherInformation</p>
+            </div>
+        }
+    </div>
+    <br />
+    <div class="row">
+        @foreach (var supplier in Model.GetRange(2, 1))
+        {
+            <div class="col-sm border box-styling">
+                <p class="font-weight-bold">@supplier.Name</p>
+                <p>@supplier.WeatherInformation</p>
+            </div>
+        }
+        <div class="col-sm border box-styling">
+            <p class="font-weight-bold">Other providers coming soon!</p>
+        </div>
+    </div>
 </div>
