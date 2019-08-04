@@ -42,7 +42,7 @@ namespace WeatherHub
 
         private void ManageDependencies(IServiceCollection services)
         {
-            services.AddScoped<IProvideWeatherInfoFromAccuWeather, AccuWeatherMock>();
+            services.AddScoped<IProvideWeatherInfoFromAccuWeather, AccuWeatherLive>();
             services.AddScoped<IProvideWeatherInfoFromGoogle, GoogleLive>();
             services.AddScoped<IProvideWeatherInfoFromOpenWeather, OpenWeatherLive>();
         }
