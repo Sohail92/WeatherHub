@@ -1,8 +1,8 @@
 ﻿using WeatherHub.Models;
 
-namespace WeatherHub.Interfaces
+namespace WeatherHub.Interfaces.SupplierLevel
 {
-    public interface IProvideWeatherInformation
+    public interface IProvideWeatherInfoFromGoogle
     {
         SupplierInformation GetWeatherInformation(string location);
     }

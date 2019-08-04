@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WeatherHub.Interfaces.SupplierLevel;
-using WeatherHub.Logic;
 using WeatherHub.Models;
 
 namespace WeatherHub.Controllers
@@ -9,10 +8,14 @@ namespace WeatherHub.Controllers
     public class HomeController : Controller
     {
         private readonly IProvideWeatherInfoFromAccuWeather _accuWeather;
+        private readonly IProvideWeatherInfoFromGoogle _google;
+        private readonly IProvideWeatherInfoFromOpenWeather _openWeather;
 
-        public HomeController(IProvideWeatherInfoFromAccuWeather accuWeatherProvider)
+        public HomeController(IProvideWeatherInfoFromAccuWeather accuWeatherProvider, IProvideWeatherInfoFromGoogle googleProvider, IProvideWeatherInfoFromOpenWeather openWeatherProvider)
         {
             _accuWeather = accuWeatherProvider;
+            _google = googleProvider;
+            _openWeather = openWeatherProvider;
         }
 
         /// <summary>
@@ -31,16 +34,13 @@ namespace WeatherHub.Controllers
         /// <returns>The results view populated with supplier information</returns>
         public IActionResult Search(string location)
         {
-
-
             // Initialise list of weather information and append from each available source.
             List<SupplierInformation> weatherInformation = new List<SupplierInformation>
             {
-                new Google().GetWeatherInformation(location),
-                new OpenWeather().GetWeatherInformation(location),
-                _accuWeather.GetWeatherInformation(location)
+                _accuWeather.GetWeatherInformation(location),
+                _google.GetWeatherInformation(location),
+                _openWeather.GetWeatherInformation(location)
             };
-
             return View("~/Views/Search/Results.cshtml", weatherInformation);
         }
     }

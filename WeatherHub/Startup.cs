@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WeatherHub.Interfaces.SupplierLevel;
+using WeatherHub.Logic;
 using WeatherHub.Logic.AccuWeather;
 
 namespace WeatherHub
@@ -36,7 +37,14 @@ namespace WeatherHub
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            ManageDependencies(services);
+        }
+
+        private void ManageDependencies(IServiceCollection services)
+        {
             services.AddScoped<IProvideWeatherInfoFromAccuWeather, AccuWeatherMock>();
+            services.AddScoped<IProvideWeatherInfoFromGoogle, GoogleLive>();
+            services.AddScoped<IProvideWeatherInfoFromOpenWeather, OpenWeatherLive>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

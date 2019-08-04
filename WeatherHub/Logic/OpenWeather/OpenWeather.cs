@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using System.Net.Http;
-using WeatherHub.Interfaces;
+using WeatherHub.Interfaces.SupplierLevel;
 using WeatherHub.Models;
 using WeatherHub.Models.OpenWeather;
 
 namespace WeatherHub.Logic
 {
-    public class OpenWeather : IProvideWeatherInformation
+    public class OpenWeatherLive : IProvideWeatherInfoFromOpenWeather
     {
 
         public SupplierInformation GetWeatherInformation(string location)

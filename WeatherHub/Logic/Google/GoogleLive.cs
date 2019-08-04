@@ -1,11 +1,11 @@
 ﻿using HtmlAgilityPack;
 using System;
-using WeatherHub.Interfaces;
+using WeatherHub.Interfaces.SupplierLevel;
 using WeatherHub.Models;
 
 namespace WeatherHub.Logic
 {
-    public class Google : IProvideWeatherInformation
+    public class GoogleLive : IProvideWeatherInfoFromGoogle
     {
         public SupplierInformation GetWeatherInformation(string location)
         {
