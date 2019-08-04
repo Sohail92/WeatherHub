@@ -16,8 +16,9 @@ namespace WeatherHub.Logic
                 HtmlDocument htmlDoc = new HtmlWeb().Load(html);
                 HtmlNode node = htmlDoc.DocumentNode.SelectSingleNode("//body");
                 string innerText = node.InnerText;
-
-                supplierInfo.WeatherInformation = "The temperature in your selected location is:" + innerText.Substring(innerText.IndexOf("Weather") + 7, 2) + "°C";
+                decimal temperature = Convert.ToDecimal(innerText.Substring(innerText.IndexOf("Weather") + 7, 2));
+                ApplyTempBugFix(temperature);
+                supplierInfo.WeatherInformation = "The temperature in your selected location is:" + temperature + "°C";
             }
             catch(Exception ex)
             {
@@ -25,6 +26,21 @@ namespace WeatherHub.Logic
                 // Log exception {to-do}
             }
             return supplierInfo;
+        }
+
+        /// <summary>
+        /// Short term bug fix to convert farenheit to celcius. 
+        /// Long term we need to detect server location or settings and then convert automatically to remove the guesswork.
+        /// A bug is raised (is raised) and will remain open until a valid fix has been found.
+        /// </summary>
+        private void ApplyTempBugFix(decimal temp)
+        {
+            // If its over 40 its almost definitely Farenheit (for the UK Anyway!)
+            if (temp > 40)
+            {
+                // update it to celsius
+                temp = (temp - 32) * 5 / 9;
+            }
         }
     }
 }
