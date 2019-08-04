@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using WeatherHub.Interfaces.SupplierLevel;
+using WeatherHub.Logic;
 using WeatherHub.Models;
 
 namespace WeatherHub.Controllers
@@ -34,6 +35,9 @@ namespace WeatherHub.Controllers
         /// <returns>The results view populated with supplier information</returns>
         public IActionResult Search(string location)
         {
+            // Creates a task to go and log to the CosmosDB. We wont await it as we can fire and forget.
+            _ = new CosmosDB().LogToCosmosDB(location);
+
             // Initialise list of weather information and append from each available source.
             List<SupplierInformation> weatherInformation = new List<SupplierInformation>
             {
