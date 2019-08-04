@@ -2,13 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using WeatherHub.Interfaces;
+using WeatherHub.Interfaces.SupplierLevel;
 using WeatherHub.Models;
 using WeatherHub.Models.AccuWeather;
 
 namespace WeatherHub.Logic
 {
-    public class AccuWeather : IProvideWeatherInformation
+    public class AccuWeatherLive : IProvideWeatherInfoFromAccuWeather
     {
         public SupplierInformation GetWeatherInformation(string location)
         {
@@ -29,7 +29,7 @@ namespace WeatherHub.Logic
 
                 supplierInfo.WeatherInformation = $"The temperature in your selected location is:{returnedAccuWeatherData[0].Temperature.Metric.Value}°C";
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 supplierInfo.WeatherInformation = "There was an error retrieving weather information from AccuWeather. Please try again later. ErrorDetail: Maximum number of API requests received.";
 
@@ -38,7 +38,7 @@ namespace WeatherHub.Logic
             return supplierInfo;
         }
 
-        private string GetLocationKey(string location)
+        public string GetLocationKey(string location)
         {
             string locationKey = "";
             using (HttpClient client = new HttpClient())
@@ -48,7 +48,7 @@ namespace WeatherHub.Logic
             return locationKey;
         }
 
-        private string GetAccuWeatherData(string locationKey)
+        public string GetAccuWeatherData(string locationKey)
         {
             string weatherData = "";
             using (HttpClient client = new HttpClient())
