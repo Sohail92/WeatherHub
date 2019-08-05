@@ -39,7 +39,7 @@ namespace WeatherHub.Logic
             if (temp > 40)
             {
                 // update it to celsius
-                return (temp - 32) * 5 / 9;
+                return Math.Round((temp - 32) * 5 / 9, 2);
             }
             else
             {

@@ -33,7 +33,7 @@ namespace WeatherHub.Logic
             {
                 supplierInfo.WeatherInformation = "There was an error retrieving weather information from AccuWeather. Please try again later. ErrorDetail: Maximum number of API requests received.";
 
-                // Log exception {to-do}
+                // Log exception to cosmos db error container
             }
             return supplierInfo;
         }
